@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:remove="all">Template de Correo</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4;">
+
+<div style="max-width: 600px; margin: 20px auto; background-color: #ffffff; border: 1px solid #e0e0e0; padding: 20px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1);">
+
+    <!-- Header: Logo y Título -->
+    <div style="text-align: center; margin-bottom: 20px;">
+        <img th:src="'cid:logoEmpresa'" alt="Logo de la empresa" style="max-width: 150px;" />
+        <h2 style="color: red; margin-top: 10px;">Gracias por tu alquiler</h2>
+    </div>
+
+    <!-- Contenido -->
+    <p>Hola, <span th:text="${nombre}"></span>,</p>
+    <p>Hemos terminado de procesar tu alquiler.</p>
+
+    <!-- Detalles del alquiler en tabla -->
+    <table style="border-collapse: collapse; width: 100%; margin-top: 20px;">
+        <thead>
+            <tr>
+                <th style="border: 1px solid black; padding: 10px; text-align: left; background-color: #f9f9f9;">Producto</th>
+                <th style="border: 1px solid black; padding: 10px; text-align: left; background-color: #f9f9f9;">Cantidad</th>
+                <th style="border: 1px solid black; padding: 10px; text-align: left; background-color: #f9f9f9;">Precio</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="border: 1px solid black; padding: 10px;" th:text="${producto.nombre}"></td>
+                <td style="border: 1px solid black; padding: 10px;">1</td>
+                <td style="border: 1px solid black; padding: 10px;" th:text="${producto.precio}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div style="margin-top: 20px;">
+        <p><strong>Subtotal:</strong> <span th:text="${producto.precio}"></span></p>
+        <!-- Puedes agregar más detalles como el envío, el método de pago, etc. aquí -->
+        <p><strong>Total:</strong> <span th:text="${producto.precio}"></span></p>
+    </div>
+
+    <footer style="margin-top: 30px;">Esperamos que disfrutes de tu producto.</footer>
+</div>
+
+</body>
+</html>
