@@ -48,7 +48,7 @@ public class UsuarioPrincipal  implements UserDetails {
     /**
      * Construye un objeto UsuarioPrncipal a partir de un objeto User.
      * 
-     * @param user El objeto User del que se construirá el UsuarioPrincipal.
+     * @param user El objeto User del que se construirï¿½ el UsuarioPrincipal.
      * @return El objeto UsuarioPrincipal construido.
      */
     public static UsuarioPrincipal build(User user){
@@ -69,7 +69,6 @@ public class UsuarioPrincipal  implements UserDetails {
 
 	@Override
 	public String getPassword() {
-		 log.info("Devolviendo contraseña codificada para el usuario: {}", this.username);
 		return password;
 	}
 

@@ -31,15 +31,16 @@
             <tr>
                 <td style="border: 1px solid black; padding: 10px;" th:text="${producto.nombre}"></td>
                 <td style="border: 1px solid black; padding: 10px;">1</td>
-                <td style="border: 1px solid black; padding: 10px;" th:text="${producto.precio}"></td>
+                <td style="border: 1px solid black; padding: 10px;" th:text="${#numbers.formatDecimal(producto.precio, 1, 'COMMA', 2, 'POINT')}"></td>
             </tr>
         </tbody>
     </table>
 
     <div style="margin-top: 20px;">
-        <p><strong>Subtotal:</strong> <span th:text="${producto.precio}"></span></p>
-        <!-- Puedes agregar más detalles como el envío, el método de pago, etc. aquí -->
-        <p><strong>Total:</strong> <span th:text="${producto.precio}"></span></p>
+		<p><strong>Subtotal:</strong> <span th:text="${#numbers.formatDecimal(producto.precio, 1, 'COMMA', 2, 'POINT')}"></span></p>
+		<p><strong>Total:</strong> <span th:text="${#numbers.formatDecimal(producto.precio, 1, 'COMMA', 2, 'POINT')}"></span></p>
+
+
     </div>
 
     <footer style="margin-top: 30px;">Esperamos que disfrutes de tu producto.</footer>

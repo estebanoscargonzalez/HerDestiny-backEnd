@@ -42,22 +42,22 @@ public class WebSecurityConfig {
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity httpSecurity, AuthenticationManager authenticationManager) throws Exception {
+        httpSecurity
+            .csrf().disable()
+            .cors()
+            .and()
+            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            .and()
+            .authorizeHttpRequests(authz -> authz
+                .antMatchers("/auth/login", "/auth/nuevoUsuario", "/api/productos").permitAll()
+                .anyRequest().authenticated())
+            .exceptionHandling().authenticationEntryPoint(jwtEntryPoint)
+            .and()
+            .addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
 
-        AuthenticationManagerBuilder builder =  httpSecurity.getSharedObject(AuthenticationManagerBuilder.class);
-        builder.userDetailsService(userDetailsServiceImpl).passwordEncoder(this.passwordEncoder());
-        authenticationManager = builder.build();
-        httpSecurity.authenticationManager(authenticationManager);
-        httpSecurity.csrf().disable();
-        httpSecurity.cors();
-        httpSecurity.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
-        httpSecurity.authorizeHttpRequests().antMatchers("/auth/login", "/auth/nuevoUsuario", "/api/productos")
-                .permitAll()
-                .anyRequest().authenticated();// poner los endpoints
-        httpSecurity.exceptionHandling().authenticationEntryPoint(jwtEntryPoint);
-        httpSecurity.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();
     }
+
 
 
     @Bean

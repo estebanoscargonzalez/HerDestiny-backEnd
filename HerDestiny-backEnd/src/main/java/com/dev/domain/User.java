@@ -50,9 +50,8 @@ public class User {
     @Column(unique = true)
     private String email;
     
-    private LocalDate fcRegistro;
-    
-    private boolean verificacionEmail;
+    private LocalDate fcRegistro;    
+
     
     private String direccion;
     
